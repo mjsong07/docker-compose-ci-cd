@@ -215,7 +215,7 @@ pipeline {
     }
     environment {
         GITHUB_USER_ID = '190356b3-d5e0-43b1-bd8e-02a170897900'
-        GITHUB_URL = 'http://171.35.40.74:7881/root/testvue.git'
+        GITHUB_URL = 'http://xxx.xxx.xxx.xxx:7881/root/testvue.git'
         // WS = "${WORKSPACE}"
         DOCKER_NAME = 'vue_test'  // 镜像名称
         DOCKER_IMAGE = 'vue_test:1.0' // 镜像完整版本
@@ -366,7 +366,7 @@ pipeline {
     }
     environment {
         GITHUB_USER_ID = '190356b3-d5e0-43b1-bd8e-02a170897900'
-        GITHUB_URL = 'http://171.35.40.74:7881/root/jenkins_node.git'
+        GITHUB_URL = 'http://xxx.xxx.xxx.xxx:7881/root/jenkins_node.git'
         DOCKER_NAME = 'node_test'  // 镜像名称
         DOCKER_IMAGE = 'node_test:1.0' // 镜像完整版本
         DOCKER_REMOTE_IMAGE = 'localhost:5000/node_test:1.0' //jenkins docker仓库在同一台设备  如果是其他机器 需要鉴权
@@ -434,3 +434,5 @@ app.listen(3000, () => {
   console.log("3000端口启动了")
 })
 ```
+# 10.参考项目
+https://github.com/mjsong07/docker-compose-ci-cd.git
