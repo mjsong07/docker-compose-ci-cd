@@ -1,0 +1,41 @@
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+before_script:
+  - echo "before_script-----" 
+  - uname -a
+    
+after_script:
+  - echo "after_script-------" 
+
+build1:
+  stage: build
+  tags:
+    - CQTrunner2       #这里引用到的就是上文gitlab runner register时配置的tags属性名
+  script:
+    - echo "build------"
+    
+test1:
+  stage: test
+  tags:
+    - CQTrunner2       #这里引用到的就是上文gitlab runner register时配置的tags属性名
+  script:
+    - echo "test1------"
+    
+test2:
+  stage: test
+  tags:
+    - CQTrunner2       #这里引用到的就是上文gitlab runner register时配置的tags属性名
+  script:
+    - echo "test2------"
+    
+deploy1:
+  stage: deploy
+  tags:
+    - CQTrunner2       #这里引用到的就是上文gitlab runner register时配置的tags属性名
+  script:
+    - echo "deploy------"

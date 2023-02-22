@@ -1,0 +1,32 @@
+
+version: '3'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce'
+    container_name: gitlab
+    restart: always
+    environment:
+      TZ: 'Asia/Shanghai'
+      GITLAB_OMNIBUS_CONFIG: |
+        # external_url 'http://171.35.40.74:7881' # 注意 不要在这里配置url 会启动失败
+        # gitlab_rails['gitlab_shell_ssh_port'] = 7882
+        # gitlab_rails['gitlab_ssh_host'] = '171.35.40.74' 
+        gitlab_rails['time_zone'] = 'Asia/Shanghai'
+      #   # gitlab_rails['smtp_enable'] = true
+      #   # gitlab_rails['smtp_address'] = "smtp.163.com"
+      #   # gitlab_rails['smtp_port'] = 465
+      #   # gitlab_rails['smtp_user_name'] = "jason@xxx.com"
+      #   # gitlab_rails['gitlab_email_from'] = 'jason@xxx.com' #需要保存一致smtp_user_name
+      #   # gitlab_rails['smtp_password'] = "授权码"
+      #   # gitlab_rails['smtp_authentication'] = "login"
+      #   # gitlab_rails['smtp_enable_starttls_auto'] = true
+      #   # gitlab_rails['smtp_tls'] = true
+    ports:
+      - '7881:80'
+      - '7883:443'
+      - '7882:22'
+    volumes:
+      - /home/gitlab/config:/etc/gitlab
+      - /home/gitlab/data:/var/opt/gitlab
+      - /home/gitlab/logs:/var/log/gitlab
+    privileged: true

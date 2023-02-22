@@ -1,0 +1,14 @@
+version: '3'
+services:
+  gitlab-runner:
+    image: gitlab/gitlab-runner:v14.6.1
+    container_name: runner
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - /home/gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/bin/docker #宿主机的docker可执行映射到镜像里面 后面build的时候会用到
+    environment:
+    pull_policy: 
+      - if-not-present

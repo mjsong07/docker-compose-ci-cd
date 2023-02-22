@@ -1,0 +1,25 @@
+variables:
+  DOCKER_NAME: node_test  # 镜像名称
+  DOCKER_IMAGE: node_test:1.0  # 镜像完整版本
+  RUNNER_SHELL_TAG: myrunner  # gitlab-runner定义的shell tag
+stages:
+  - deploy
+ 
+before_script:
+  - echo "先停止和删除老的容器"
+  - docker stop -f $DOCKER_NAME  || true
+  - docker rm -f $DOCKER_NAME  || true
+ 
+cache: #缓存文件夹，不删除
+  paths:
+    - node_modules/
+ 
+deploy_master:
+  stage: deploy
+  script:
+    - docker build -t $DOCKER_IMAGE .
+    - docker run --rm -it -d -p 3330:3000 --name=$DOCKER_NAME $DOCKER_IMAGE
+  only:
+    - master
+  tags:
+    - $RUNNER_SHELL_TAG
