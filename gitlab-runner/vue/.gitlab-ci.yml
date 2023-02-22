@@ -1,0 +1,46 @@
+
+variables:
+  DOCKER_NAME: vue_test  # 镜像名称
+  DOCKER_IMAGE: vue_test:1.0  # 镜像完整版本
+  RUNNER_SHELL_TAG: myrunner3  # gitlab-runner定义的shell tag
+  RUNNER_DOCKER_TAG: docker1  # gitlab-runner定义的docker tag
+stages:
+  - build
+  - deploy
+cache:
+  paths:
+    - node_modules/
+    - dist/
+ 
+build_node:
+  stage: build
+  image: node:14-alpine
+  script:
+    - echo "============ npm 打包 ============"
+    # 修改源
+    - npm config set registry https://registry.npmmirror.com --global
+    - npm install
+    - npm run build
+    - cp -rf dist/* ./
+    - pwd
+    - ls
+  artifacts: # 配合cache 实现 多个job 共享dist
+    expire_in: 1 week
+    paths:
+      - dist/
+  tags:
+    - $RUNNER_DOCKER_TAG
+
+build_deploy:
+  stage: deploy
+  script:
+    - echo "============ dockerfile生成 ============"
+    - pwd
+    - ls
+    - docker build -t $DOCKER_IMAGE . 
+    - echo "============ docker运行 ============"
+    - docker stop -f $DOCKER_NAME  || true
+    - docker rm -f $DOCKER_NAME  || true
+    - docker run --rm -it -d -p 8081:8080 --name=$DOCKER_NAME $DOCKER_IMAGE
+  tags:
+    - $RUNNER_SHELL_TAG
