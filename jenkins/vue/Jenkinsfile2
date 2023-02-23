@@ -16,10 +16,10 @@ pipeline {
     }
     environment {
         GITHUB_USER_ID = '190356b3-d5e0-43b1-bd8e-02a170897900'
-        GITHUB_URL = 'http://171.35.40.74:7881/root/testvue.git'
+        GITHUB_URL = 'http://xx.xx.xx.xx:7881/root/testvue.git'
         ALIYUN_USER_ID = '06989ce7-86fb-43ca-aec0-313d260af382'
         IMAGE_NAME = 'ylzs-node-test'
-        REMOTE_IMAGE_NAME = '171.35.40.74:5000/ylzs-node-test'
+        REMOTE_IMAGE_NAME = 'xx.xx.xx.xx:5000/ylzs-node-test'
         IMAGE_TAR = 'ylzs-node-test.tar'
         WS = "${env.WORKSPACE}"
         // SSH_NAME = 'CentOS-3-root'

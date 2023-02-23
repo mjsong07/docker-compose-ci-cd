@@ -11,7 +11,7 @@ pipeline {
     }
     environment {
         GITHUB_USER_ID = '190356b3-d5e0-43b1-bd8e-02a170897900'
-        GITHUB_URL = 'http://171.35.40.74:7881/root/testvue.git'
+        GITHUB_URL = 'http://xx.xx.xx.xx:7881/root/testvue.git'
         // WS = "${WORKSPACE}"
         DOCKER_NAME = 'vue_test'  // 镜像名称
         DOCKER_IMAGE = 'vue_test:1.0' // 镜像完整版本

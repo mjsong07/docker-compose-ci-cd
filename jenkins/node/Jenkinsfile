@@ -11,7 +11,7 @@ pipeline {
     }
     environment {
         GITHUB_USER_ID = '190356b3-d5e0-43b1-bd8e-02a170897900'
-        GITHUB_URL = 'http://171.35.40.74:7881/root/jenkins_node.git'
+        GITHUB_URL = 'http://xx.xx.xx.xx:7881/root/jenkins_node.git'
         DOCKER_NAME = 'node_test'  // 镜像名称
         DOCKER_IMAGE = 'node_test:1.0' // 镜像完整版本
         DOCKER_REMOTE_IMAGE = 'localhost:5000/node_test:1.0' //jenkins docker仓库在同一台设备  如果是其他机器 需要鉴权
